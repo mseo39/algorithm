@@ -78,3 +78,33 @@ print(m)
 #6024
 s1,s2=input().split()
 print(s1+s2)
+
+#----------값변환----------
+#정수로 변환
+a,b=input().split()
+c=int(a)+int(b)
+print(c)
+#실수로 변환
+a=input()
+b=input()
+c=float(a)+float(b)
+print(c)
+
+#----------출력변환----------
+#10진수를 16진수로 출력
+a=input()
+n=int(a)
+print('%x'%n)#소문자
+
+a=input()
+n=int(a)
+print('%X'%n)#대문자
+
+#16진수를 8진수로 출력
+a=input()
+n=int(a,16) #입력되 a를 16진수로 인식하여 저장
+print('%o'%n)
+
+#영문자 1개 입력받아 10진수 유니코드값으로 출력
+n=ord(input()) #입력받은 문자를 10진수 유니코드로 변환 후, 저장
+print(n)
