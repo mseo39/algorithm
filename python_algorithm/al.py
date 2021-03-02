@@ -1,2 +1,3 @@
-n=ord(input()) #입력받은 문자를 10진수 유니코드로 변환 후, 저장
-print(n)
+#10진수를 유니코드 문자로 출력
+w, n = input().split()
+print(w*int(n))

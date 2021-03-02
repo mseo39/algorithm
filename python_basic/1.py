@@ -108,3 +108,26 @@ print('%o'%n)
 #영문자 1개 입력받아 10진수 유니코드값으로 출력
 n=ord(input()) #입력받은 문자를 10진수 유니코드로 변환 후, 저장
 print(n)
+
+#10진수를 유니코드 문자로 출력
+c = int(input())
+print(chr(c))
+
+#-----------산술연산----------
+#부호 바꾸기
+n = int(input())
+print(-n)
+#문자1개를 입력받아 다음 문자 출력
+c = ord(input())
+print(chr(c+1))
+#정수 차 구하기
+a, b = input().split()
+c= int(a)-int(b)
+print(c)
+#소수 곱
+a, b = input().split()
+c= float(a)*float(b)
+print(c)
+#문자열*정수는 문자열을 여러 번 반복한 문자열이 됨
+w, n = input().split()
+print(w*int(n))
