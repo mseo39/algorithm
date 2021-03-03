@@ -131,3 +131,12 @@ print(c)
 #문자열*정수는 문자열을 여러 번 반복한 문자열이 됨
 w, n = input().split()
 print(w*int(n))
+
+#----------값변환----------
+#round(수,자릿수) 원하는 자리까지 반올림
+f = float(input())
+print(round(f,2))
+#소숫점 이하 넷째 자리에서 반올림
+f1, f2 = input().split()
+f=float(f1)/float(f2)
+print('%.3f'%f)
