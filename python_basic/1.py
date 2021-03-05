@@ -136,7 +136,35 @@ print(w*int(n))
 #round(수,자릿수) 원하는 자리까지 반올림
 f = float(input())
 print(round(f,2))
+
+#----------산술연산----------
 #소숫점 이하 넷째 자리에서 반올림
 f1, f2 = input().split()
 f=float(f1)/float(f2)
 print('%.3f'%f)
+
+#6044
+f1, f2 = input().split()
+a=int(f1)+int(f2)
+b=int(f1)-int(f2)
+c=int(f1)*int(f2)
+d=int(f1)//int(f2)
+e=int(f1)%int(f2)
+f=int(f1)/int(f2)
+print(a)
+print(b)
+print(c)
+print(d)
+print(e)
+print(round(f,2)) #계속 print('%.2f'%f)이거 써서 틀렸었음 #반올림은 round
+
+a, b, c = input().split()
+n=int(a)+int(b)+int(c)
+s=n/3
+print(n, round(s,2))
+
+#----------비트시프트연산----------
+#2진수 형태로 저장되어있는 값을 왼쪽(<<)이나 오른쪽(>>)으로 지정한 비트 수만큼 밀어주면
+#2배씩 늘어나거나 1/2로 줄어든다
+n = int(input())
+print(n<<1)
