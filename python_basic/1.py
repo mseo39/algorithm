@@ -168,3 +168,56 @@ print(n, round(s,2))
 #2배씩 늘어나거나 1/2로 줄어든다
 n = int(input())
 print(n<<1)
+#ex) a<<1 => a*2^1 a<<2 => a*2^2
+#a를 2^b배 만큼 곱한 값을 출력
+a, b = input().split()
+print(int(a)<<int(b))
+
+#----------비교연산----------
+#비교연산자 종류_ <,>,<=,>=,==,!=
+#<
+a, b = input().split()
+print(int(a)<int(b))
+#==
+a, b = input().split()
+print(int(a)==int(b))
+#<=
+a, b = input().split()
+print(int(a)<=int(b))
+#!=
+a, b = input().split()
+print(int(a)!=int(b))
+#----------논리연산----------
+#bool()을 이용하면 입력된 식이나 값을 평가해 볼 형의 값(true,false)을 출력
+#python 언어에서 정수값 0은 false로 그 외의 값은 true로 평가됨
+n = int(input())
+print(bool(n))
+#반대로
+n = int(input())
+print(bool(not n))
+#논리연산 AND연산(boolean AND)
+# A B  A&&B
+# 0 0   0
+# 0 1   0
+# 1 0   0
+# 1 1   1
+a, b = input().split()
+print(bool(int(a)) and bool(int(b)))
+#논리연산 OR연산(boolean AND)
+# A B  A||B
+# 0 0   0
+# 0 1   1
+# 1 0   1
+# 1 1   1
+a, b = input().split()
+print(bool(int(a)) or bool(int(b)))
+#XOR
+# A B  !A !B A&&!B !A&&B (A&&!B)||(!A&&B)
+# 0 0   1  1   0     0           0
+# 0 1   1  0   0     1           1
+# 1 0   0  1   1     0           1
+# 1 1   0  0   0     0           0
+a, b = input().split()
+c = bool(int(a))
+d = bool(int(b))
+print((c and (not d)) or ((not c) and d))
