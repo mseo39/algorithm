@@ -195,7 +195,7 @@ print(bool(n))
 #반대로
 n = int(input())
 print(bool(not n))
-#논리연산 AND연산(boolean AND)
+#논리연산 AND연산(boolean AND) #둘 다 참일 경우에만 참
 # A B  A&&B
 # 0 0   0
 # 0 1   0
@@ -203,7 +203,7 @@ print(bool(not n))
 # 1 1   1
 a, b = input().split()
 print(bool(int(a)) and bool(int(b)))
-#논리연산 OR연산(boolean AND)
+#논리연산 OR연산(boolean OR) 하나라도 참이면 참
 # A B  A||B
 # 0 0   0
 # 0 1   1
@@ -211,7 +211,7 @@ print(bool(int(a)) and bool(int(b)))
 # 1 1   1
 a, b = input().split()
 print(bool(int(a)) or bool(int(b)))
-#XOR
+#XOR 참/거짓이 서로 다를 때에만 참
 # A B  !A !B A&&!B !A&&B (A&&!B)||(!A&&B)
 # 0 0   1  1   0     0           0
 # 0 1   1  0   0     1           1
@@ -221,3 +221,14 @@ a, b = input().split()
 c = bool(int(a))
 d = bool(int(b))
 print((c and (not d)) or ((not c) and d))
+#참/거짓이 서로 같을 때에만 참 출력하기
+c = bool(int(a))
+d = bool(int(b))
+print(c==d)
+#둘 다 거짓일 경우
+a, b = input().split()
+c = bool(int(a))
+d = bool(int(b))
+print((not c) and (not d))
+
+#3월7일까지 한 것
