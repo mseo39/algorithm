@@ -1,6 +1,5 @@
-#10진수를 유니코드 문자로 출력
-a, b = input().split()
-c = bool(int(a))
-d = bool(int(b))
-# f=bool(c==d)
-print((not c) and (not d))
+a ,b, c=input().split()
+a=int(a)
+b=int(b)
+c=int(c)
+print((a if(a>=b) else b) if ((a if a>b else b)>c) else c)
