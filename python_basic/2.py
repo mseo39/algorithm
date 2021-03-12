@@ -35,3 +35,22 @@ a=int(a)
 b=int(b)
 c=int(c)
 print((a if(a>=b) else b) if ((a if a>b else b)>c) else c)
+#세 정수 중 작은 값을 출력
+a ,b, c=input().split()
+a=int(a)
+b=int(b)
+c=int(c)
+print((b if(a>b) else a) if ((b if a>b else a)<c) else c)
+
+#----------선택실행구조----------
+#짝수만 출력하기
+a ,b, c=input().split()
+a=int(a)
+b=int(b)
+c=int(c)
+if a%2==0:
+    print(a)
+if b%2==0:
+    print(b)
+if c%2==0:
+    print(c)
