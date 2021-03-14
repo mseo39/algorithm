@@ -3,8 +3,14 @@ a=int(a)
 b=int(b)
 c=int(c)
 if a%2==0:
-    print(a)
+    print("even")
+else:
+    print("odd")
 if b%2==0:
-    print(b)
+    print("even")
+else:
+    print("odd")
 if c%2==0:
-    print(c)
+    print("even")
+else:
+    print("odd")
