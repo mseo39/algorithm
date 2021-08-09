@@ -1,7 +1,6 @@
-# python_study
-python basic
+# python에 대한 모든 공부들
 
-# python_study
+## python_study
 python basic
 
 ## 파이썬 기초
