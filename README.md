@@ -30,11 +30,11 @@
 
 > 문제가 어렵다면 일단 외워라 풀다보면 결국엔 이해한다
 
-## python basic
+## 📝python basic
 >파이썬 기초를 공부합시다
 - [코드업-파이썬기초100제](https://codeup.kr/problemsetsol.php?psid=33)
 
-## study
+## 📝study
 > 문제풀이를 하면서 알게 된 것을 정리합시다
 
 ## 📝자료
