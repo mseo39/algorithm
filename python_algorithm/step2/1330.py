@@ -1,3 +1,9 @@
+#두 수 비교하기
+'''
+A가 B보다 큰 경우에는 >를 출력
+A가 B보다 작은 경우에는 <를 출력
+A가 B보다 같은 경우에는 ==를 출력
+'''
 a,b= map(int, input().split())
 if a>b: print(">")
 elif a<b: print("<")
