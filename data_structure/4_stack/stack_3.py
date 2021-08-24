@@ -71,7 +71,7 @@ def infix_to_postfix(string):
         #연산자라면
         else:
             #스택이 비어져있지 않고 스택에 있는 연산자의 우선순위가 더 높다면
-            ''' 나는 while문이 아니라 if문을 작성했었음 --왜 while문을 써야할까..?'''
+            ''' 나는 while문이 아니라 if문을 작성했었음 --우선순위가 더 높은것은 다 꺼내줘야 한다'''
             while ((not s.isempty()) and prec(i) <= prec(s.peek())):
                 #스택 상단 요소를 꺼내서 리스트에 넣어줌
                 postfix.append(s.pop())
