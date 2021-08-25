@@ -33,3 +33,12 @@ a=1 a=eval('a+4') print(a)-> 5
 a='abcdefgh'
 print(a[::2]) -> aceg
 '''
+#for문 거꾸로 반복하기
+'''
+range()는 3개의 파라미터가 있다
+range([start],stop,[step]) -start와 step은 생략 가능(start=0, step=1)
+start는 시작 숫자 stop은 끝 숫자, step은 숫자 사이의 거리를 의미
+(단, 끝 숫자는 포함되지 않는다)
+
+: start=n stop=0 ** step=-1로 지정하면 n부터 1까지 출력된다
+'''
