@@ -6,12 +6,13 @@
 '''
 not_self_number=[]
 self_number=[i for i in range(1,10001)]
-print(self_number)
 def d(num):
     sum=num
     for j in str(i):
         sum+=int(j)
     return sum
 for i in range(10001):
-    not_self_number.append(sum)
+    not_self_number.append(d(i))
+for n in sorted(set(self_number)-set(not_self_number)):
+    print(n)
 
