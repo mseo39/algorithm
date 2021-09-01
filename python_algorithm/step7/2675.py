@@ -6,9 +6,10 @@
 출력
 각 테스트 케이스에 대해 P를 출력한다.
 '''
+#문자열 연산을 사용할줄 아는가
 for _ in range(int(input())):
     sum=''
     a,b=input().split()
     for i in b:
-        sum+=i*int(a)
+        sum+=i*int(a) #다른방법: print(int(a)*j, end='')
     print(sum)

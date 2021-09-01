@@ -6,6 +6,7 @@
 출력
 
 '''
+#find()함수를 사용할 줄 아는가
 from string import ascii_lowercase
 alpha_list = list(ascii_lowercase)
 n=input()

@@ -7,6 +7,7 @@
 출력
 입력으로 주어진 숫자 N개의 합을 출력한다.
 '''
+#sum(map(int,input()))
 sum=0
 input()
 for i in input():
