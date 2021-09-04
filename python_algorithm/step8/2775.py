@@ -19,3 +19,18 @@ k층에 n호에는 몇 명이 살고 있는가
 제한
 1 ≤ k, n ≤ 14
 '''
+#a가 층 b가 호
+for n in range(int(input())):
+    a=int(input())+1
+    b=int(input())
+    array = [[0 for _ in range(b)] for _ in range(a)]
+    
+    for j in range(a):
+        array[j][0]=1
+    for i in range(b):
+        array[0][i]=i+1
+        
+    for j in range(1,a):
+        for i in range(1,b):
+            array[j][i]=array[j][i-1]+array[j-1][i]
+    print(array[a-1][b-1])
