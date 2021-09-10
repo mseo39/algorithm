@@ -24,6 +24,10 @@ T 는 입력의 맨 첫 줄에 주어진다
 
 출력
  N 번째 손님에게 배정되어야 하는 방 번호를 출력한다.
+
+풀이
+N%H를 하면 층을 알 수 있고
+N/H를 하면 호를 알 수 있다
 '''
 for _ in range(int(input())):
     H,W,N=map(int,input().split())
