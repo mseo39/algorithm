@@ -11,6 +11,18 @@
 그 다음에는 0, 1, 2 광년을 이동할 수 있는 것이다
 '''
 for _ in range(int(input())):
-    x,y=map(int,input().split());k=0;n=(y-x)//2
-    while(n>0): k+=1;n-=k
-    print(k*2+1 if ((y-x)%2!=0) else k*2+2)
+    x,y=map(int,input().split());k=0;n=y-x;cnk=0
+    while(1):
+        k+=1
+        n=n-(k*2)
+        if n<0:
+            if k==-n:
+                print(k*2-1)
+            elif n+k>0:
+                print(k*2)
+            elif n+k<0:
+                print(k*2-1)
+            break
+        elif n==0:
+            print(k*2)
+            break
