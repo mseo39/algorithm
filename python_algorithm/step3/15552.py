@@ -5,7 +5,6 @@
 2. 테스트케이스를 하나 받은 뒤 하나 출력해도 된다
 '''
 import sys
-
 for _ in range(int(sys.stdin.readline())):
     a,b=map(int,sys.stdin.readline().split())
     print(a+b)
