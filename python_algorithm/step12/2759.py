@@ -1,0 +1,15 @@
+# 수 정렬하기
+'''
+N개의 수가 주어졌을 때, 이를 오름차순으로 정렬하는
+프로그램
+'''
+#첫째 줄에 수의 개수
+N=int(input())
+list_=list(int(input()) for _ in range(N))
+list_.sort()
+for i in list_:
+    print(i)
+'''
+다른 방법( 근데 속도는 같음)
+print("\n".join(map(str,list_)))    
+'''
