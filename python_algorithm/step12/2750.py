@@ -13,3 +13,10 @@ for i in list_:
 다른 방법( 근데 속도는 같음)
 print("\n".join(map(str,list_)))    
 '''
+
+'''
+속도를 빠르게 하기 위하여
+import sys
+I= sys.stdin.readline
+P= sys.stdout.write를 사용하는 것이 좋다
+'''
