@@ -14,9 +14,43 @@
 '''
 #입력_n이 주어진다
 import sys
+from unittest import result
 I=sys.stdin.readline
 n=int(I())
 
 list_=list(int(I()) for _ in range(n))
-list_.sort()
-print(list_)
+list1_=list(i for i in range(1,n+1))
+
+index_=0
+index1_=0
+result_=[]
+stack_=[0,]
+'''
+1. 스택 상단에 있는 요소와 입력된 배열,
+인덱스기 index_인 요소와 비교
+1-1. 같다면 pop
+1-2. 다르면 push
+
+그렇다면 수열이 안만들어지는 조건이 무엇일까....
+
+'''
+
+while(index1_!= n):
+    if(list_[index_]==stack_[-1]):
+        stack_.pop()
+        result_.append("-")
+        index_+=1
+        continue
+
+    stack_.append(list1_[index1_])
+    index1_+=1
+    result_.append("+")
+
+if(list_[index_:]==stack_[n:0:-1]):
+    for i in result_:
+        print(i)
+    for _ in range(len(stack_)-1):
+        print("-")
+else:
+    print("NO")
+
