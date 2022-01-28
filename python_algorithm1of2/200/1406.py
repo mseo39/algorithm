@@ -14,16 +14,36 @@ P $ - $라는 문자를 커서 왼쪽에 추가함
 초기에 편집기에 입력되어 있는 문자열이 주어짐
 모든 명령어를 수행하고 난 후 편집기에 입력되어 있는 문자열을 구하는 프로그램을 작성하시오                                                                                                                             
 
-흠,, 이걸 스택을 이용한다고,, 왜지
+흠,, 이걸 스택을 이용한다고,,
+P: 리스트1에 push
+L: 리스트1이 비어있지 않으면 pop해서 리스트2에 저장
+D: 리스트2가 비어있지 않으면 pop해서 리스트1에 저장
+B: 리스트1이 비어있지 않으면 pop
+
+출력할 때 리스트 2에 있는 요소들을 거꾸로 배치해주고
+리스트1과 리스트2를 합쳐서 출력해준다
 '''
+import sys
+I=sys.stdin.readline
+O=sys.stdout.write
 #초기에 입력되어 있는 문자열이 주어진다
-n=input()
+n=list(I().strip())
 #명령의 개수를 나타내는 정수
-M=int(input())
-i=len(n)
+M=int(I())
+n2=[]
+
 for _ in range(M):
-    com=input().split()
+    com=I().split()
     if "P" in com[0]:
-        n[i]=com[1]
-    elif "L"==com:
-        
+        n.append(com[1])
+    elif "L"==com[0]:
+        if(len(n)!=0):
+            n2.append(n.pop())
+    elif "D"==com[0]:
+        if(len(n2)!=0):
+            n.append(n2.pop())
+    elif "B"==com[0]:
+        if(len(n)!=0):
+            n.pop()
+n2.reverse()
+print("".join(n+n2))
