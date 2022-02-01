@@ -40,34 +40,85 @@ deq.extendleft(array)
 deq.remove(item)
 데크를 num만큼 회전한다
 deq.rotate(num)
+
+리스트 처음부터 요소를 삽입하고
+리스트 앞에 있는 요소를 삭제
+
+삽입은 뒤에서
+삭제는 앞에서 일어나도록 했다
+
+- 큐에 대한 내용을 정리
+- 모듈 deque에 대해서도 정리하기
 '''
+#큐를 사용하기위해서 모듈을 사용
 from collections import deque
+#입력과 출력을 빠르게 하기위함
+import sys
+
+I=sys.stdin.readline
+O=sys.stdout.write
+
 class queue:
+    #데큐를 만들어줌
     def __init__(self):
         self.deq=deque()
-    
-    def push(self,item):
-        self.deq.appendleft(item)
-    def pop(self):
+    #삽입
+    def Push(self,item):
+        self.deq.append(item)
+    #삭제
+    def Pop(self):
+        #비어있으면
         if(self.empty()):
+            #-1을 출력
             print(-1)
+        #비어있지 않으면
         else:
-            self.deq.pop()
+            #리스트 왼쪽에 있는 요소를 꺼내고 삭제
+            print(self.deq.popleft())
+    #리스트 크기를 출력
     def size(self):
         print(len(self.deq))
-
+    #리스트가 비어있는
     def empty(self):
+        #리스트길이가 0이면 1을 반환
         if(len(self.deq)==0):
             return 1
+        #아니라면
         else:
+            #0을 빈환
             return 0
+    #리스트 앞에 있는 것을 출력
     def front(self):
         if(self.empty()):
             print(-1)
         else:
             print(self.deq[0])
+    #리스트 뒤에 있는 것을 출력
     def back(self):
         if(self.empty()):
             print(-1)
         else:
             print(self.deq[-1])
+
+queue_=queue()
+#입력_ 첫째줄에 주어지는 명령의 수 N이 주어진다
+#둘째 줄부터 N개의 줄에는 명령이 하나씩 주어진다
+N=int(I().strip())
+for _ in range(N):
+    com=I().split()
+    #입력된 명령에 따라 함수를 실행
+    if com[0]=="push":
+        queue_.Push(com[1])
+    elif com[0]=="pop":
+        queue_.Pop()
+    elif com[0]=="size":
+        queue_.size()
+    elif com[0]=="empty":
+        if(queue_.empty()):
+            print(1)
+        else:
+            print(0)
+    elif com[0]=="front":
+        queue_.front()
+    elif com[0]=="back":
+        queue_.back()
