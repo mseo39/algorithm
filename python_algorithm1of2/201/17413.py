@@ -22,12 +22,50 @@
 단어를 스택에 넣어서 다시 꺼내서 변경할것인데 어떻게 해야할까
 
 - 단어를 넣을 때
-<와 빈칸을 만났을 때
+(1) < 를 만날때까지 글자를 넣는다
+-> <를 만나면 스택에 있는 글자들을 꺼낸다(스택이 비어있지 않다면)
+(2) 빈칸을 만날때까지 글자를 넣는다
+-> <를 만나면 스택에 있는 글자들을 꺼낸다(스택이 비어있지 않다면)
+
+- 단어를 넣지 않을 때
+(1) < 를 만나고 다음 >를 만날 때까지
 '''
 import sys
 I=sys.stdin.readline
 O=sys.stdout.write
 
-#문자열을 입력받음
-s=I()
+class stack():
+    def init(self):
+        self.stack_list=[]
+    def Push(self, item):
+        self.stack_list.append(item)
+    def Pop(self):
+        if(self.is_empty()):
+            return
+        else:
+            self.stack_list.pop()
+    def is_empty(self):
+        if(len(self.stack_list)==0):
+            return 1
+        else:
+            return 0
 
+#문자열을 입력받음
+s=I().strip()
+stack_=stack()
+stack_.init()
+#for문을 이용하여 문자열의 글자 하나씩 확인
+for i in s:
+    #글자를 그만 넣고 스택에서 글씨를 꺼내야 할때
+    if ((i=="<" or i==" ") and (stack_.is_empty==0)):
+        #r거꾸로 출력
+        print("".join(stack_.stack_list[::-1]))
+        stack_.init()
+    elif(i==">" and (stack_.is_empty==0)):
+        print("".join(stack_.stack_list))
+        stack_.init()
+    stack_.Push(i)
+if i==">":
+    print("".join(stack_.stack_list))
+else:
+    print("".join(stack_.stack_list[::-1]))
