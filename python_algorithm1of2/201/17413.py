@@ -57,15 +57,21 @@ stack_.init()
 #for문을 이용하여 문자열의 글자 하나씩 확인
 for i in s:
     #글자를 그만 넣고 스택에서 글씨를 꺼내야 할때
-    if ((i=="<" or i==" ") and (stack_.is_empty==0)):
-        #r거꾸로 출력
-        print("".join(stack_.stack_list[::-1]))
-        stack_.init()
-    elif(i==">" and (stack_.is_empty==0)):
-        print("".join(stack_.stack_list))
-        stack_.init()
-    stack_.Push(i)
+    if (i=="<" or i==" "):
+        
+        if stack_.is_empty()==0:
+            #r거꾸로 출력
+            print("".join(stack_.stack_list[::-1]), end="")
+            stack_.init()
+        stack_.Push(i)
+    elif(i==">" ):
+        stack_.Push(i)
+        if stack_.is_empty()==0:
+            print("".join(stack_.stack_list), end="")
+            stack_.init()
+    else:
+        stack_.Push(i)
 if i==">":
-    print("".join(stack_.stack_list))
+    print("".join(stack_.stack_list), end="")
 else:
-    print("".join(stack_.stack_list[::-1]))
+    print("".join(stack_.stack_list[::-1]), end="")
