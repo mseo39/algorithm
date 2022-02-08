@@ -24,7 +24,7 @@
 - 단어를 넣을 때
 (1) < 를 만날때까지 글자를 넣는다
 -> <를 만나면 스택에 있는 글자들을 꺼낸다(스택이 비어있지 않다면)
-(2) 빈칸을 만날때까지 글자를 넣는다
+(2) 빈칸(태그 안에 있는 빈칸 x)을 만날때까지 글자를 넣는다
 -> <를 만나면 스택에 있는 글자들을 꺼낸다(스택이 비어있지 않다면)
 
 - 단어를 넣지 않을 때
@@ -50,21 +50,51 @@ class stack():
         else:
             return 0
 
+s=I().strip().split("<")
+for i in s:
+    if ">" in i:
+        i=i.split(">")
+        O("<"+i[0]+">")
+        n=0
+        for i1 in i[1].split(" "):
+            O(i1[::-1])
+            if n==len(i[1].split(" "))-1:
+                break
+            O(" ")
+            n+=1
+    elif " " in i:
+        for i1 in i.split(" "):
+            O(i1[::-1])
+            O(" ")
+
+'''
+---처음에 생각했던 방법
+
 #문자열을 입력받음
 s=I().strip()
 stack_=stack()
 stack_.init()
+#태그 안인지 밖인지 확인하기 위한 것
+#태그 안이면 0, 태그 밖이면 1
+# <를 만나면1로 병경 >를 만나면 0으로 변경
+chk=1
 #for문을 이용하여 문자열의 글자 하나씩 확인
 for i in s:
     #글자를 그만 넣고 스택에서 글씨를 꺼내야 할때
-    if (i=="<" or i==" "):
-        
+    if (i=="<" or (i==" " and chk)):
+        if(i=="<"):
+            chk=0
         if stack_.is_empty()==0:
-            #r거꾸로 출력
-            print("".join(stack_.stack_list[::-1]), end="")
+            # 거꾸로 출력
+            O("".join(stack_.stack_list[::-1]))
             stack_.init()
-        stack_.Push(i)
+        #띄어쓰기는 그냥 출력 해주자
+        if(i==" "):
+            O(" ")
+        else:
+            stack_.Push(i)
     elif(i==">" ):
+        chk=1
         stack_.Push(i)
         if stack_.is_empty()==0:
             print("".join(stack_.stack_list), end="")
@@ -74,4 +104,4 @@ for i in s:
 if i==">":
     print("".join(stack_.stack_list), end="")
 else:
-    print("".join(stack_.stack_list[::-1]), end="")
+    print("".join(stack_.stack_list[::-1]), end="")'''
