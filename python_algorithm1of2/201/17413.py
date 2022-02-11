@@ -50,25 +50,20 @@ class stack():
         else:
             return 0
 
-s=I().strip().split("<")
-for i in s:
-    if ">" in i:
-        i=i.split(">")
-        O("<"+i[0]+">")
-        n=0
-        for i1 in i[1].split(" "):
-            O(i1[::-1])
-            if n==len(i[1].split(" "))-1:
-                break
-            O(" ")
-            n+=1
-    elif " " in i:
-        for i1 in i.split(" "):
-            O(i1[::-1])
-            O(" ")
+#-- 다른방법
+s = '' # 빈 문자를 만듦
+for t in input().split('<'): # < 기준으로 나눔
+    if '>' in t: # >가 있는 문자열이라면
+        x, y = t.split('>') # >를 기준으로 나눔
+        # >로 나누면 인덱스 0은 태그 안 문자열
+        # 인덱스 1은 태그 밖 문자열이다
+        # x는 그대로 y는 거꾸로 출력
+        s+= '<' + x + '>' + ' '.join(map(lambda t: t[::-1], y.split(' ')))
+    else: s += ' '.join(map(lambda t: t[::-1], t.split(' ')))
+print(s)
 
 '''
----처음에 생각했던 방법
+---내가 생각한 방법
 
 #문자열을 입력받음
 s=I().strip()
