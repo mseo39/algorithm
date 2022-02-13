@@ -19,6 +19,49 @@
 (가 나오고 )이 나올 때까지 ()개수를 보고
 ()개수+1을 해줘서 자른 쇠막대기 개수를 구할 수 있다
 '''
+import sys
+I=sys.stdin.readline
+O=sys.stdout.write
+"""class stack:
+    def __init__(self):
+        self.list_=[]
+    def Push(self, item):
+        self.list_.append(item)
+    def Pop(self):
+        if self.is_empty():
+            return
+        else:
+            return(self.list_.pop())
+    def size(self):
+        return len(self.list_)
+    def top(self):
+        return(self.list_[-1])
+    def is_empty(self):
+        if len(self.list_)==0:
+            return 1
+        else:
+            return 0"""
 
+stack_=[]
+cnt=[]
 #문자열을 압력받음
-s=input()
+s=list(I())
+total=0
+i=0 #인덱스 역할
+while(i!=len(s)):
+    #여는 괄호와 닫는 괄호의 인접한 쌍
+    if s[i]=="(" and s[i+1]==")":
+        for n in range(len(cnt)):
+            cnt[n]+=1
+        i+=2
+        continue
+    elif s[i]=="(":
+        stack_.append("(")
+        cnt.append(1)
+    elif s[i]==")":
+        if len(stack_)!=0:
+            stack_.pop()
+        if len(cnt)!=0:
+            total+=cnt.pop()
+    i+=1
+O(str(total))
