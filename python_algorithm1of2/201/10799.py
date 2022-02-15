@@ -22,46 +22,29 @@
 import sys
 I=sys.stdin.readline
 O=sys.stdout.write
-"""class stack:
-    def __init__(self):
-        self.list_=[]
-    def Push(self, item):
-        self.list_.append(item)
-    def Pop(self):
-        if self.is_empty():
-            return
-        else:
-            return(self.list_.pop())
-    def size(self):
-        return len(self.list_)
-    def top(self):
-        return(self.list_[-1])
-    def is_empty(self):
-        if len(self.list_)==0:
-            return 1
-        else:
-            return 0"""
 
+#스택리스트
 stack_=[]
-cnt=[]
 #문자열을 압력받음
-s=list(I())
+s=I()
+#쇠막대기의 개수를 저장할 변수
 total=0
-i=0 #인덱스 역할
-while(i!=len(s)):
+'''
+()가 있으면 쇠막대기가 잘리는건데
+막대기가 잘리고 왼쪽에 있는 막대기 개수는 (의 개수와 같다
+그래서 ()를 발견했을 때는 total+=(의 개수가 된다
+
+쇠막대기 하나가 다 잘린 후에는 맨마지막에 한 개의 막대기가 남게된다
+그래서 )를 만나면 하나의 막대기가 끝났으므로 pop해주고
+total+=1을 해주면된다
+'''
+for i in range(len(s)):
     #여는 괄호와 닫는 괄호의 인접한 쌍
-    if s[i]=="(" and s[i+1]==")":
-        for n in range(len(cnt)):
-            cnt[n]+=1
-        i+=2
-        continue
-    elif s[i]=="(":
+    if s[i]==")" and s[i-1]=="(":
+        total+=len(stack_)
+    elif s[i]=="(" and s[i+1]!=")":
         stack_.append("(")
-        cnt.append(1)
     elif s[i]==")":
-        if len(stack_)!=0:
-            stack_.pop()
-        if len(cnt)!=0:
-            total+=cnt.pop()
-    i+=1
+        stack_.pop()
+        total+=1
 O(str(total))
