@@ -15,15 +15,15 @@ O=sys.stdout.write
 #입력: 첫째줄에 수열 A의 크기 N, 둘째줄에 수열 A의 원소가 주어진단
 N=int(I())
 A=list(map(int, input().split()))
-result_=list(-1 for _ in range(N))
-stack_=[-1]
+result_=[-1]*N
+stack_=[]
 '''
 한글자를 기준으로 오른쪽에 있는 리스트에서
 왼쪽부터 비교하여 큰것을 출력
+
 '''
 for i in range(len(A)):
-    if stack_ and A[stack_[-1]]<A[i]:
-        for _ in range(len(stack_)-1):
-            result_[stack_.pop()]=A[i]
+    while stack_ and A[stack_[-1]]<A[i]:
+        result_[stack_.pop()]=A[i]
     stack_.append(i)
 print(*result_)
