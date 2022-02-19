@@ -17,12 +17,13 @@ N=int(input())
 A=list(map(int,input().split()))
 #각 원소의 개수를 저장할 빈 리스트를 생성
 cnt=[]
-result_=[-1]*len(set(cnt))
-for i in set(cnt):
+for i in set(A):
     cnt.append(A.count(i))
+print(cnt)
+result_=[-1]*N
 stack_=[]
-for i in range(len(A)-1,-1,-1):
-    while stack_ and A[stack_[-1]]<A[i]:
-        result_[stack_.pop()]=A[i]
+for i in range(len(cnt)-1,-1,-1):
+    while stack_ and cnt[stack_[-1]]<cnt[i]:
+        result_[stack_.pop()]=cnt[i]
     stack_.append(i)
 print(*result_)
