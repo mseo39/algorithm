@@ -30,9 +30,9 @@ middle_s=I().strip()
 중위표기식을 후위표기식으로 바꾸는데 연산자와 괄호의 우선순위를 정해야한다
 
 우선순위
+2: * /
+1: + -
 0: ()
-1: * /
-2: + -
 
 피연산자를 만나면 출력
 연산자를 만나면
@@ -43,8 +43,50 @@ middle_s=I().strip()
 for문이끝나면 스택에 있는 것들 전부 꺼내줌
 
 괄호 (를 만났다면 스택에 push
-괄호 )를 만나면 스택에서 (를 만날 때까지 push 해준다
+괄호 )를 만나면 스택에서 (를 만날 때까지 pop 해준다
 '''
 
-#우선순위 계산하는 
+#우선순위 계산하는  함수
+#우선순의를 하는 이유: * /는 +,-보다 먼저 계산 되어야하기 때문
+def priority(ex):
+    #괄호의 우선순위를 낮게 한 이유는 삭제되면 안되기 때문
+    if(ex=="("):
+        return 0
+    elif(ex=="*" or ex=="/"):
+        return 2
+    elif(ex=="+" or ex=="-"):
+        return 1         
+
+#빈 스택 생성
+stack=[]
+
+#중위 표기식 for문으로 돌려줌
 for i in middle_s:
+    #연산자라면
+    if(i=="*" or i=="+" or i=="-" or i=="/"):
+        #스택이 비어있지 않고 스택 위에 있는 
+        # 연산자의 우선순위가 더 높거나 같다면
+        while(stack and priority(stack[-1])>=priority(i)):
+            #스택에서 연산자를 꺼내서 출력해준다
+            print(stack.pop(), end="")
+        #현재 연산자를 push 해준다
+        stack.append(i)
+    # (를 만나면
+    elif(i=="("):
+        #스택에 push 해준다
+        stack.append(i)
+    # )를 만나면
+    elif(i==")"):
+        #(를 만날때까지 pop해준다
+        while(stack and stack[-1]!="("):
+            print(stack.pop(), end="")
+        #(도 제거하기 위해서 pop해준다
+        stack.pop()
+    #피연산자라면 출력해준다
+    else:
+        print(i, end="")
+#중위표기식 검사가 끝나고 스택에 남은 연잔사들을 출력해준다
+while(stack):
+    print(stack.pop(), end="")
+
+                
