@@ -14,7 +14,31 @@
 
 계속 이상한게 계속 출력되어 뭔가했더니 주석 맨 밑에 프린트한게 있더라,,,
 """
-current=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+
+ans=[]
+count=0
+def go(cnt):
+    #퀸 4개가 다 놓여져 있다면 끝
+    if cnt==4:
+        global count
+        count+=1
+        return
+    for i in range(0,4):
+        chk=0
+        for queen in range(len(ans)):
+            if i==ans[queen] or (cnt-queen)**2==(i-ans[queen])**2:
+                chk=1
+                break
+        if chk==0:
+            ans.append(i)
+            go(cnt+1)
+            ans.pop()
+    return
+
+go(0)
+print(count)
+
+"""current=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 ans=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 
 def go(cnt):
@@ -99,4 +123,4 @@ def go(cnt):
     return
 
 go(0)
-print(ans)
+print(ans)"""
