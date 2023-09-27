@@ -24,16 +24,71 @@ i번 사람과 j번 사람이 같은 팀에 속했을 때, 팀에 더해지는 �
 1. go()
 2. 스타팀과 링크팀의 능력치의 차이가 최솟값을 출력한다
 3. 배열에 숫자를 넣을 때 숫자가 이미 배열에 있는 지 확인하고 넣는다
+
+
+문제가 계속 안풀려서 찾아보니 DFS 개념을 확실하게 하고 풀어야될것 같다
+그래서 dfs에 대해서 제대로 공부한 다음에 다시 풀어보겠다
 """
 
 N = int(input())
 s=[list(map(int,input().split())) for _ in range(N)]
-num=[]
-min=[]
+arr=[]
+min=100
 
+"""for i in range(0,N):
+    for i1 in range(0,N):
+        num.append(s[i][i1]+s[i1][i])"""
+"""cnt=0
+def go(num,count):
+    global cnt
+    global min
+    if count==N/2:
+        for i in arr:
+            if min > abs(cnt-i):
+                print(count, min, abs(cnt-i))
+                min=abs(cnt-i)
+        arr.append(cnt)
+        return
+    for i in range(num,N):
+        if s[num][i]==0:
+            continue
+        print(s[num][i]+s[i][num])
+        count+=1
+        cnt+=(s[num][i]+s[i][num])
+        go(i+1,count)
+        count-=1
+        cnt-=(s[num][i]+s[i][num])
+go(0,0)
+print(arr)
+print(min)"""
+
+
+num=[]
 for i in range(0,N):
     for i1 in range(0,N):
+        if i==i1:
+            continue
         num.append(s[i][i1]+s[i1][i])
+print(num)
 
-def go():
-    
+cnt=0
+
+def go(n,count):
+    global cnt
+    global min
+    if count==N/2:
+        for i in arr:
+            if min > abs(cnt-i):
+                print(count, min, abs(cnt-i))
+                min=abs(cnt-i)
+        arr.append(cnt)
+        return
+    for i in range(n,len(num)):
+        count+=1
+        cnt+=num[i]
+        go(i+1,count)
+        count-=1
+        cnt-=num[i]
+go(0,0)
+print(arr)
+print(min)
