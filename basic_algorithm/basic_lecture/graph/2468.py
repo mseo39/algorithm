@@ -59,17 +59,36 @@ for _ in range(N):
 chk=[[0 for _ in range(N)] for _ in range(N)]
 
 def go(x,y):
+    print(arr[x][y])
+    if arr[x][y]<=h or chk[x][y]==1:
+        return
     #방문했으므로 1로 변경
     chk[x][y]=1 
     
-    if x>=0 and x<N:
+    #상
+    if y>0:
+        go(x,y-1)
+    #하
+    if y<N-1:
+        go(x,y+1)
+    #좌
+    if x>0:
+        go(x-1,y)
+    #우
+    if x<N-1:
+        go(x+1,y)
+    return
 
-
-
+result=[]
 #높이는 1이상 100이하의 정수이다
 for h in range(1,max(map(max,arr))):
+    result.append(0)
     for x in range(N):
         for y in range(N):
-            #만약 arr[x][y]가 h이하 라면 탐색 시작
-            if arr[x][y]<=h:
-                
+            #만약 arr[x][y]가 h이상으로
+            #안전한 지역이고 탐색하지 않은 곳이라면 탐색 시작
+            if arr[x][y]>h and chk[x][y]==0:
+                go(x,y)
+                result[h-1]+=1
+print(result)
+print(max(result))
