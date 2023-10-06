@@ -51,44 +51,70 @@ N은 2 이상 100 이하의 정수이다.
 
 에러
 10/5 논리상 맞으나 결과가 이상하게 나옴
-10/6 chk를 초기화 안해서 발생한 문제라서 해결함, 런타임 에러 발생
-"""
-#입력받은 것을 저장
-N=int(input())
-arr=[]
-for _ in range(N):
-    arr.append(list(map(int, input().split())))
+10/6 chk를 초기화 안해서 발생한 문제라서 해결함, 런타임 에러 (RecursionError) 발생
+조건을 잘못줬나..?라고 생각하기에는 다른 사람들과 조건이 똑같다 이게 뭐지,,,
+그래서 bfs로 다시 풀기로 했다
 
-def go(x,y):
-    if arr[x][y]<=h or chk[x][y]==1:
-        return
+bfs쓰니깐 맞췄다
+또 아무 지역도 물에 잠기지 않을 수 있기때문에 0을 포함해야한다고 한다
+"""
+
+"""def go(x,y,h):
     #방문했으므로 1로 변경
-    chk[x][y]=1 
+    chk[x][y]=1
     
     #상
-    if y>0:
-        go(x,y-1)
+    if y>0 and (arr[x][y-1]>h and chk[x][y-1]==0):
+        go(x,y-1,h)
     #하
-    if y<N-1:
-        go(x,y+1)
+    if y<N-1 and (arr[x][y+1]>h and chk[x][y+1]==0):
+        go(x,y+1,h)
     #좌
-    if x>0:
-        go(x-1,y)
+    if x>0 and (arr[x-1][y]>h and chk[x-1][y]==0):
+        go(x-1,y,h)
     #우
-    if x<N-1:
-        go(x+1,y)
-    return
+    if x<N-1 and (arr[x+1][y]>h and chk[x+1][y]==0):
+        go(x+1,y,h)"""
 
-result=[]
+from collections import deque
+
+#입력받은 것을 저장
+N=int(input())
+arr=[list(map(int, input().split())) for _ in range(N)]
+
+result=0
 #높이는 1이상 100이하의 정수이다
-for h in range(1,max(map(max,arr))):
+for h in range(0,max(map(max,arr))):
     chk=[[0 for _ in range(N)] for _ in range(N)]
-    result.append(0)
+    tmp=0
     for x in range(N):
         for y in range(N):
             #만약 arr[x][y]가 h이상으로
             #안전한 지역이고 탐색하지 않은 곳이라면 탐색 시작
             if arr[x][y]>h and chk[x][y]==0:
-                go(x,y)
-                result[h-1]+=1
-print(max(result))
+                queue=deque([[x,y]])
+                chk[x][y]=1
+
+                while queue:
+                    now=queue.popleft()
+
+                    #상
+                    if now[1]>0 and (arr[now[0]][now[1]-1]>h and chk[now[0]][now[1]-1]==0):
+                        queue.append([now[0],now[1]-1])
+                        chk[now[0]][now[1]-1]=1
+                    #하
+                    if now[1]<N-1 and (arr[now[0]][now[1]+1]>h and chk[now[0]][now[1]+1]==0):
+                        queue.append([now[0],now[1]+1])
+                        chk[now[0]][now[1]+1]=1
+                    #좌
+                    if now[0]>0 and (arr[now[0]-1][now[1]]>h and chk[now[0]-1][now[1]]==0):
+                        queue.append([now[0]-1,now[1]])
+                        chk[now[0]-1][now[1]]=1
+                    #우
+                    if now[0]<N-1 and (arr[now[0]+1][now[1]]>h and chk[now[0]+1][now[1]]==0):
+                        queue.append([now[0]+1,now[1]])
+                        chk[now[0]+1][now[1]]=1
+
+                tmp+=1
+    result=max(result,tmp)
+print(result)
