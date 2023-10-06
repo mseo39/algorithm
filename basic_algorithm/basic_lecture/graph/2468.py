@@ -48,6 +48,10 @@ N은 2 이상 100 이하의 정수이다.
 * 2차원 배열모두 방문해야하기 때문에 이중배열을 사용
 * 방문했는지 체크하기 위한 2차원 배열 생성
 * 
+
+에러
+10/5 논리상 맞으나 결과가 이상하게 나옴
+10/6 chk를 초기화 안해서 발생한 문제라서 해결함, 런타임 에러 발생
 """
 #입력받은 것을 저장
 N=int(input())
@@ -55,11 +59,7 @@ arr=[]
 for _ in range(N):
     arr.append(list(map(int, input().split())))
 
-#방문체크를 위한 2차원배열
-chk=[[0 for _ in range(N)] for _ in range(N)]
-
 def go(x,y):
-    print(arr[x][y])
     if arr[x][y]<=h or chk[x][y]==1:
         return
     #방문했으므로 1로 변경
@@ -82,6 +82,7 @@ def go(x,y):
 result=[]
 #높이는 1이상 100이하의 정수이다
 for h in range(1,max(map(max,arr))):
+    chk=[[0 for _ in range(N)] for _ in range(N)]
     result.append(0)
     for x in range(N):
         for y in range(N):
@@ -90,5 +91,4 @@ for h in range(1,max(map(max,arr))):
             if arr[x][y]>h and chk[x][y]==0:
                 go(x,y)
                 result[h-1]+=1
-print(result)
 print(max(result))
