@@ -49,6 +49,24 @@
 이런 멍청한 방식,,
 
 정답은 나오지만 시간초과가 뜸
+pypy3로 하길래 해보니깐 런타임 에러 (IndexError) 뜸
+다른 사람들과 코드 비교를 해봤는데 다른 부분이 없어서 뭐가 잘못된거지 했다가
+주목한 부분이
+if now[1]>0 and new[now[0]][now[1]-1]==0:
+이 조건문에서 에러가 날 수도 있겠다는 생각이 들었다
+
+그래서 전 문제부터도 그렇고 상하좌우로 움직일 때 다음과 같은 방법을 사용해서 나도 그 방법을 사용하기로 했다
+
+d = [[-1,0],[1,0],[0,-1],[0,1]]
+
+for i in range(4):
+    dr = now[0]+d[i][0]
+    dc = now[1]+d[i][1]
+
+    if (0<=dr<N) and (0<=dc<M):
+        if new[dr][dc] == 0:
+            new[dr][dc] =2
+            queue.append([dr,dc])
 """
 from collections import deque
 
@@ -56,6 +74,7 @@ from collections import deque
 N, M=map(int, input().split())
 arr=[list(map(int, input().split())) for _ in range(N)]
 max_num=0
+
 #벽 3개를 세우는 함수
 def wall(cnt):
     if cnt==3:
@@ -69,17 +88,29 @@ def wall(cnt):
                 wall(cnt+1)
                 arr[x][y]=0
 
+d = [[-1,0],[1,0],[0,-1],[0,1]]
+
 def birus():
     new=[i[:] for i in arr]
+    cnt=0
     for x in range(N):
         for y in range(M):
             if new[x][y]==2:
+                cnt+=1
                 queue=deque([[x,y]])
 
                 while queue:
                     now=queue.popleft()
 
-                    #상
+                    for i in range(4):
+                        dr = now[0]+d[i][0]
+                        dc = now[1]+d[i][1]
+
+                        if (0<=dr<N) and (0<=dc<M):
+                            if new[dr][dc] == 0:
+                                new[dr][dc] =2
+                                queue.append([dr,dc])
+                    """#상
                     if now[1]>0 and new[now[0]][now[1]-1]==0:
                         queue.append([now[0],now[1]-1])
                         new[now[0]][now[1]-1]=2
@@ -94,7 +125,7 @@ def birus():
                     #우
                     if now[0]<N-1 and new[now[0]+1][now[1]]==0:
                         queue.append([now[0]+1,now[1]])
-                        new[now[0]+1][now[1]]=2
+                        new[now[0]+1][now[1]]=2"""
     return sum([i.count(0) for i in new])
 
 wall(0)
