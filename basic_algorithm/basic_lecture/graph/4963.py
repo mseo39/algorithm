@@ -15,8 +15,12 @@ w와 h는 50보다 작거나 같은 양의 정수이다.
 
 출력
 각 테스트 케이스에 대해서, 섬의 개수를 출력한다.
+
+첫번째 시도
+런타임 에러 발생
+-> 흠 고민 입력 받을 때 1의 위치를 저장해야하는건가? 싶음
+
 """
-from collections import deque
 
 """
 상 -1 0
@@ -25,6 +29,7 @@ from collections import deque
 우 0 1
 대각선 -1-1, -1 1, 1 -1, 1 1
 """
+
 direct= [[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[-1,1],[1,-1],[1,1]]
 
 while(True):
@@ -56,3 +61,42 @@ while(True):
                                 chk[dx][dy]=1
                 num+=1
     print(num)
+
+
+"""from collections import deque
+
+direct= [[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[-1,1],[1,-1],[1,1]]
+
+while True:
+    w,h = map(int, input().split())
+    #0 0이 입력되면 입력을 멈춘다
+    if w==0 and h==0:
+        break
+    arr=[]
+    #1은 땅, 0은 바다 tmp
+    for x in range(h):
+        tmp=list(map(int, input().split()))
+        for y in range(len(tmp)):
+            if tmp[y]==1:
+                arr.append([x,y])
+
+    chk=[0  for _ in range(len(arr))]
+
+    num=0
+    #dfs
+    for x in range(len(arr)):
+        if chk[x]==0:
+            queue=deque([[arr[x][0],arr[x][1]]])
+            chk[x]=1
+
+            while queue:
+                now= queue.popleft()
+
+                for i in direct:
+                    dx=now[0]+i[0]
+                    dy=now[1]+i[1]
+                    if [dx,dy] in arr and chk[arr.index([dx,dy])]==0:
+                        queue.append([dx,dy])
+                        chk[arr.index([dx,dy])]=1
+            num+=1
+    print(num)"""
