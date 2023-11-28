@@ -39,45 +39,62 @@ from collections import deque
 
 # 상, 하, 좌, 우로 이동하는 방향을 표현하는 리스트
 direction =[[-1,0],[1,0],[0,-1],[0,1]]
-#먹을 수 있는 물고기 위치 x,y,거리
-fish=[]
 #아기상어 크기
 size=2
 
-#dfs  탐색 시작할 위치
-def dfs(x,y):
-    queue=deque([[x,y]])
-    distance=0
+#bfs  탐색 시작할 위치
+def bfs(x,y):
+    global size
+    visited = [[0]*T for _ in range(T)]
+    queue=deque([[x,y,0]])
+    #먹을 수 있는 물고기 위치 x,y,거리
+    fish=[]
+    visited[x][y] = 1
+    
     while queue:
         now=queue.popleft()
-        distance+=1
         for i in direction:
             dx=now[0]+i[0]
             dy=now[1]+i[1]
-            if 0<=dx<T and 0<=dy<T:
+            if 0<=dx<T and 0<=dy<T and visited[dx][dy] == 0:
                 #물고기를 먹는 경우
                 #아기 상어보다 크기가 작은 경우, 0은 물고기가 아니니 제외
                 if map_list[dx][dy]<size and map_list[dx][dy]!=0:
                     #먹을 물고기를 찾으면 
-                    fish.append({"x":dx,"y":dy,"distance":distance})
+                    fish.append({"x":dx,"y":dy,"distance":now[2]+1})
                 #이동할 수 있는 곳은 큐에 저장
                 #크기가 같은 곳, 빈칸인 곳
-                if map_list[dx][dy]==size and map_list[dx][dy]==0:
-                    queue.append([dx,dy])
+                elif map_list[dx][dy]==size or map_list[dx][dy]==0:
+                    queue.append([dx,dy,now[2]+1])
+                print("=======")
+                print(dx, dy)
+                print(queue)
+                print(fish)
+                visited[dx][dy] = 1
+
+    size+=1
     result=sorted(fish, key=lambda x: (x["distance"], x["x"], x["y"]))
-    print(result)
-    return [result[0]["x"],result[0]["y"]]
+    map_list[result[0]["x"]][result[0]["y"]]=0
+    return [result[0]["x"],result[0]["y"],result[0]["distance"]]
 
 
 T = int(input())
 map_list=[]
- 
+
 for x in range(T):
     map_list.append(list(map(int, input().split())))
     if 9 in map_list[x]:
         loc=[x,map_list[x].index(9)]
 
+total=0
 while True:
-    if T*T==sum([i.count(0) for i in map_list]):
+    if T*T==sum([i.count(0) for i in map_list])+1:
         break
-    loc=dfs(loc[0], loc[1])
+    if size <= min([min(i) for i in map_list]):
+        break
+    loc=bfs(loc[0], loc[1])
+    total+=loc[2]
+    print("총합: ",loc[2])
+    print(total)
+
+print(total)
