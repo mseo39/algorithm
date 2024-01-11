@@ -78,6 +78,6 @@ for i in range(1000000):
     for k in range(len(tmp)):
         if tmp[k] in breakdown:
             break
-        if k==len(tmp)-1:
+        if k==len(tmp)-1: # 마직막 인덱스가 여기로 왔다면 전부 가능하다는 것이기 때문
             min_num=min(min_num, abs(n-i)+len(tmp))
 print(min_num)
