@@ -40,7 +40,6 @@ def solution_find(tmp):
     return num
 
 def solution_min():
-    print(arr)
     global min_num
     tmp=[i for i in range(N) if i not in arr]
     min_num=min(min_num,abs(solution_find(arr)-solution_find(tmp)))
