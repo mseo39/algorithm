@@ -35,7 +35,73 @@ N×N 크기의 공간에 물고기 M마리와 아기 상어 1마리가 있다. �
 첫째 줄에 아기 상어가 엄마 상어에게 도움을 요청하지 않고 물고기를 잡아먹을 수 있는 시간을 출력한다.
 """
 
+import sys
 from collections import deque
+
+location =[[1,0],[0,1],[-1,0],[0,-1]]
+cnt=0
+size=2
+fish=[]
+
+def bfs(x,y,d):
+    queue = deque()
+    queue.append([x,y,d])
+    visited=[[0 for _ in range(N)] for _ in range(N)]
+    visited[x][y]=1
+    fish.clear()
+
+    while queue:
+        nx, ny, d = queue.popleft()
+        for i in location:
+            dx=nx+i[0]
+            dy=ny+i[1]
+            if 0<=dx<N and 0<=dy<N and visited[dx][dy]==0:
+                if N_list[dx][dy]==0 or N_list[dx][dy]==size:
+                    queue.append([dx,dy,d+1])
+                elif N_list[dx][dy]<size:
+                    fish.append([dx,dy,d+1])
+                visited[dx][dy]=1
+
+def chk():
+    for x in range(N):
+        for y in range(N):
+            if N_list[x][y]==9:
+                bfs(x,y,0)
+                N_list[x][y]=0
+                return
+            
+def sorting_criteria(fish):
+    return (fish[2], fish[0], fish[1])
+
+#공간의 크기
+N= int(sys.stdin.readline())
+#공간의 상태
+"""
+0: 빈 칸
+1, 2, 3, 4, 5, 6: 칸에 있는 물고기의 크기
+9: 아기 상어의 위치
+"""
+N_list = [list(map(int, sys.stdin.readline().strip().split())) for _ in range(N)]
+chk()
+
+tmp=0
+while(True):
+    if len(fish)==0:
+        print(tmp)
+        break
+    if len(fish)==1:
+        cnt+=1
+    else:
+        fish = sorted(fish, key=sorting_criteria)
+        cnt+=1
+    if size==cnt:
+        cnt=0
+        size+=1
+    N_list[fish[0][0]][fish[0][1]]=0
+    tmp=fish[0][2]
+    bfs(fish[0][0],fish[0][1],fish[0][2])
+
+"""from collections import deque
 
 # 상, 하, 좌, 우로 이동하는 방향을 표현하는 리스트
 direction =[[-1,0],[1,0],[0,-1],[0,1]]
@@ -97,4 +163,4 @@ while True:
     print("총합: ",loc[2])
     print(total)
 
-print(total)
+print(total)"""
