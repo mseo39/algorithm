@@ -1,3 +1,5 @@
+[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=mseo39)](https://solved.ac/mseo39/)
+
 # python에 대한 모든 공부들
 > 코딩테스트를 목적으로 합니다
 
