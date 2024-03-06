@@ -24,3 +24,20 @@ value=sorted(value, key=lambda x : (x[1],-x[0]), reverse=True)
 ✅ fish[2]-> fish[0] -> fish[1] 순으로 기준을 잡고 정렬을 해준다
 fish = sorted(fish, key=(fish[2], fish[0], fish[1]))
 """
+
+#문자열을 정렬
+"""
+가장 큰 수
+   0 1 2 3 4 5 6 7 8
+1: 3 3 3
+2: 3 0 3 0
+3: 3 4 3 4
+
+숫자와 다르게 문자를 비교할 때는 앞에서부터 하나 하나 비교한다
+예를 들어 3, 30, 34을 비교한다면
+0번 째 3,3,3 비교 다 똑같으니 다음으로
+1번 째 3,0,4 이므로 2<1<3으로 정렬된다
+
+numbers=list(map(str,numbers))
+numbers.sort(key=lambda x:x*3, reverse=True)
+"""
