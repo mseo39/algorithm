@@ -35,7 +35,7 @@ def chk():
     for y in range(N):
         x=0
         tmp=y
-        while(tmp!=N and x!=H):
+        while(x!=H):
             if bridge[x][tmp]==1:
                 tmp+=1
             elif tmp>0 and bridge[x][tmp-1]==1:
@@ -46,22 +46,25 @@ def chk():
     return True
 
 def bridge_chk(x,y):
-    if bridge[x][y] ==0 and (y==0 or (y>0 and bridge[x][y-1]==0)):
+    if bridge[x][y] ==0 and (y==0 or (y>0 and bridge[x][y-1]==0)) and bridge[x][y+1]==0:
         return True
     return False
 
-def solution():
+def dfs(cnt, X,Y):
+    global ans
+    if cnt>3 or cnt>=ans:
+        return
     if chk():
-        return 0
-    
-    # 1개를 선택할 때
-    for x in range(H):
-        for y in range(N-1):
-            if(bridge_chk(x,y)):
+        ans=min(ans,cnt)
+    now=Y
+    for x in range(X,H):
+        for y in range(now, N-1):
+            if bridge_chk(x,y):
                 bridge[x][y]=1
-                if chk():
-                    return 1
+                dfs(cnt+1,x,y+2)
                 bridge[x][y]=0
+        now=0
+
 
 N,M,H=map(int, sys.stdin.readline().strip().split())
 bridge=[[0 for _ in range(N)] for _ in range(H)]
@@ -70,4 +73,6 @@ for _ in range(M):
     a,b = map(int, sys.stdin.readline().strip().split())
     bridge[a-1][b-1]=1
 
-print(solution())
+ans=4
+dfs(0,0,0)
+print(ans if ans!=4 else -1)
