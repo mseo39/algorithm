@@ -52,6 +52,8 @@
 * 이분탐색
 * 그래프
 
+### [3. 삼성 SW 역량 테스트 기출 문제](https://www.acmicpc.net/workbook/view/1152)
+
 
 ## 📝study
 > 문제풀이를 하면서 알게 된 것을 정리합시다
