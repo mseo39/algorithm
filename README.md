@@ -1,3 +1,5 @@
+동기부여를 위한 겁니다😊😊
+
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=mseo39)](https://solved.ac/mseo39/)
 
 # python에 대한 모든 공부들
